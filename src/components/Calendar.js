@@ -1,22 +1,25 @@
-import React, {useState} from 'react'
+import React, {Component} from 'react'
 import {startOfWeek, startOfMonth, endOfMonth, format, addDays} from "date-fns";
 
-function Calendar() {
-    const [currentMonth] = useState(new Date());
-    const monthStart = startOfMonth(currentMonth);
-    const startDate = startOfWeek(monthStart)
-
-    function renderHeader () {
-
+class Calendar extends Component {
+    constructor() {
+        super();
+        this.state = {
+            currentMonth: new Date(),
+            monthStart: startOfMonth(new Date()),
+            startDate: startOfWeek(startOfMonth(new Date()))
+        }
     }
 
-    function renderCells () {
+    renderHeader () {
+    }
+
+    renderCells () {
         const rows = []
         const dateFormat = "d"
         let days = [];
-        let day = startDate;
-        let endDate = endOfMonth(currentMonth)
-        console.log(endDate)
+        let day = this.state.startDate;
+        let endDate = endOfMonth(this.state.currentMonth)
         let formattedDate = "";
         while (day <= endDate) {
             for (let i = 0; i < 7; i++) {
@@ -41,11 +44,14 @@ function Calendar() {
 
         return <div className="body">{rows}</div>;
     }
+    renderWeekCells() {
 
-    function renderDays() {
+    }
+
+    renderDays() {
         const dateFormat = "cccc";
         const days = [];
-        let startDate = startOfWeek(currentMonth);
+        let startDate = startOfWeek(this.state.currentMonth);
         for (let i = 0; i < 7; i++) {
             days.push(
                 <div className="col col-center" key={i}>
@@ -56,13 +62,15 @@ function Calendar() {
         return <div className="days row">{days}</div>;
     }
 
-    return (
-        <div className="calendar">
-            {renderHeader()}
-            {renderDays()}
-            {renderCells()}
-        </div>
-    );
+    render() {
+        return (
+            <div className="calendar">
+                {this.renderHeader()}
+                {this.renderDays()}
+                {this.props.displayMonthView ? this.renderCells(): this.renderWeekCells()}
+            </div>
+        );
+    }
 }
 
 export default Calendar
