@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {startOfWeek, startOfMonth, endOfMonth, format, addDays} from "date-fns";
+import itLocale from "date-fns/locale/it";
 
 class Calendar extends Component {
     constructor() {
@@ -55,7 +56,7 @@ class Calendar extends Component {
         for (let i = 0; i < 7; i++) {
             days.push(
                 <div className="col col-center" key={i}>
-                    {format(addDays(startDate, i), dateFormat)}
+                    {format(addDays(startDate, i), dateFormat, { locale: itLocale })}
                 </div>
             );
         }
