@@ -30,7 +30,7 @@ class App extends Component {
                 </header>
                 <main>
                     <div className="toggle">
-                        <Checkbox toggle label="Weekly" selected={displayMonthView} onClick={(evt, data)=>this.onChangeViewToggle(evt, data)}/>
+                        <Checkbox toggle label="Settimana" selected={displayMonthView} onClick={(evt, data)=>this.onChangeViewToggle(evt, data)}/>
                         <Calendar displayMonthView={displayMonthView}/>
                     </div>
                 </main>
