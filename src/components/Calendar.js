@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import {startOfWeek, startOfMonth, endOfMonth, format, addDays} from "date-fns";
+import {startOfWeek, startOfMonth, endOfMonth, format, addDays, isSameDay} from "date-fns";
 import itLocale from "date-fns/locale/it";
 
 class Calendar extends Component {
     constructor() {
-        super();
+        super()
         this.state = {
             currentMonth: new Date(),
             monthStart: startOfMonth(new Date()),
@@ -12,10 +12,10 @@ class Calendar extends Component {
         }
     }
 
-    renderHeader () {
+    renderHeader() {
     }
 
-    renderCells () {
+    renderCells() {
         const rows = []
         const dateFormat = "d"
         let days = [];
@@ -27,10 +27,11 @@ class Calendar extends Component {
                 formattedDate = format(day, dateFormat)
                 days.push(
                     <div
-                        className="col cell"
+                        className={`col cell ${ isSameDay(day, new Date()) ? "selected" : ""}`}
                         key={day}
                     >
                         <span className="number">{formattedDate}</span>
+                        <span className="bg">{formattedDate}</span>
                     </div>
                 );
                 day = addDays(day, 1);
@@ -45,6 +46,7 @@ class Calendar extends Component {
 
         return <div className="body">{rows}</div>;
     }
+
     renderWeekCells() {
 
     }
