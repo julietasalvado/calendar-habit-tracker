@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import Calendar from "./components/Calendar"
+import Status from "./components/Status"
 import { Checkbox } from 'semantic-ui-react'
 
 class App extends Component {
@@ -32,6 +33,9 @@ class App extends Component {
                     <div className="toggle">
                         <Checkbox toggle label="Settimana" selected={displayMonthView} onClick={(evt, data)=>this.onChangeViewToggle(evt, data)}/>
                         <Calendar displayMonthView={displayMonthView}/>
+                    </div>
+                    <div className="footer">
+                        <Status/>
                     </div>
                 </main>
 
