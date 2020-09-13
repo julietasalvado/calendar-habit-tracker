@@ -8,12 +8,18 @@ class Calendar extends Component {
         this.state = {
             currentMonth: new Date(),
             monthStart: startOfMonth(new Date()),
-            startDate: startOfWeek(startOfMonth(new Date()))
+            startDate: startOfWeek(startOfMonth(new Date())),
+            displayMonthView: true
         }
+    }
+
+    switchCalendarView = (evt, data) => {
+        this.setState({ displayMonthView: !this.state.displayMonthView})
     }
 
     renderHeader() {
         const dateFormat = "MMMM yyyy";
+
         return (
             <div className="header row flex-middle">
                 <div className="column col-start">
@@ -41,7 +47,11 @@ class Calendar extends Component {
         let endDate = endOfMonth(this.state.currentMonth)
         let formattedDate = "";
         while (day <= endDate) {
-            for (let i = 0; i < 7; i++) {
+            days.push(
+                <div className="col cell"  onClick={(evt, data)=>this.switchCalendarView(evt, data)}>
+                </div>
+            )
+            for (let i = 1; i < 8; i++) {
                 formattedDate = format(day, dateFormat)
                 days.push(
                     <div
@@ -51,8 +61,8 @@ class Calendar extends Component {
                         <span className="number">{formattedDate}</span>
                         <span className="bg">{formattedDate}</span>
                     </div>
-                );
-                day = addDays(day, 1);
+                )
+                day = addDays(day, 1)
             }
             rows.push(
                 <div className="row" key={day}>
@@ -70,10 +80,16 @@ class Calendar extends Component {
     }
 
     renderDays() {
-        const dateFormat = "cccc";
         const days = [];
+        days.push(
+            <div className="col col-center" key={0}>
+
+            </div>
+        );
+
+        const dateFormat = "cccc";
         let startDate = startOfWeek(this.state.currentMonth);
-        for (let i = 0; i < 7; i++) {
+        for (let i = 1; i < 8; i++) {
             days.push(
                 <div className="col col-center" key={i}>
                     {format(addDays(startDate, i), dateFormat, { locale: itLocale })}
@@ -88,7 +104,7 @@ class Calendar extends Component {
             <div className="calendar">
                 {this.renderHeader()}
                 {this.renderDays()}
-                {this.props.displayMonthView ? this.renderCells(): this.renderWeekCells()}
+                {this.state.displayMonthView ? this.renderCells(): this.renderWeekCells()}
             </div>
         );
     }
