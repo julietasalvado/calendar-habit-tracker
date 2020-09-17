@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {startOfWeek, startOfMonth, endOfMonth, format, addDays, isSameDay} from "date-fns";
+import {startOfWeek, startOfMonth, endOfMonth, format, addDays, isSameDay, subMonths, addMonths} from "date-fns";
 import itLocale from "date-fns/locale/it";
 
 class Calendar extends Component {
@@ -17,13 +17,31 @@ class Calendar extends Component {
         this.setState({ displayMonthView: !this.state.displayMonthView})
     }
 
+    nextMonth = () => {
+        const nextMonth = addMonths(this.state.currentMonth, 1)
+        this.setState({
+            currentMonth : nextMonth,
+            monthStart: startOfMonth(nextMonth),
+            startDate: startOfWeek(startOfMonth(nextMonth))
+        })
+    }
+
+    prevMonth = () => {
+        const prevMonth = subMonths(this.state.currentMonth, 1)
+        this.setState({
+            currentMonth : prevMonth,
+            monthStart: startOfMonth(prevMonth),
+            startDate: startOfWeek(startOfMonth(prevMonth))
+        })
+    }
+
     renderHeader() {
         const dateFormat = "MMMM yyyy";
 
         return (
             <div className="header row flex-middle">
                 <div className="column col-start">
-                    <div className="icon">
+                    <div className="icon" onClick={this.prevMonth}>
                         chevron_left
                     </div>
                 </div>
@@ -31,7 +49,7 @@ class Calendar extends Component {
                     <span>{format(this.state.currentMonth, dateFormat, { locale: itLocale })}</span>
                 </div>
                 <div className="column col-end">
-                    <div className="icon">
+                    <div className="icon" onClick={this.nextMonth}>
                         chevron_right
                     </div>
                 </div>
