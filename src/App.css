@@ -108,6 +108,11 @@ main {
   text-align: center;
 }
 
+.subtitle{
+  text-transform: none;
+  font-size: 85%;
+}
+
 .col-end {
   justify-content: flex-end;
   text-align: right;

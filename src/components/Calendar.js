@@ -39,19 +39,37 @@ class Calendar extends Component {
         const dateFormat = "MMMM yyyy";
 
         return (
+            <div>
+                <div className="header row flex-middle">
+                    <div className="column col-start">
+                        <div className="icon">
+                            chevron_left
+                        </div>
+                    </div>
+                    <div className="column col-center">
+                        <span>{format(this.state.currentMonth, dateFormat, { locale: itLocale })}</span>
+                    </div>
+                    <div className="column col-end">
+                        <div className="icon">
+                            chevron_right
+                        </div>
+                    </div>
+                </div>
+                { !this.state.displayMonthView && this.renderBackButton() }
+            </div>
+        )
+    }
+
+    renderBackButton() {
+        return (
             <div className="header row flex-middle">
                 <div className="column col-start">
                     <div className="icon" onClick={this.prevMonth}>
                         chevron_left
                     </div>
                 </div>
-                <div className="column col-center">
-                    <span>{format(this.state.currentMonth, dateFormat, { locale: itLocale })}</span>
-                </div>
-                <div className="column col-end">
-                    <div className="icon" onClick={this.nextMonth}>
-                        chevron_right
-                    </div>
+                <div className="column col-center subtitle">
+                    <span>Back</span>
                 </div>
             </div>
         )
