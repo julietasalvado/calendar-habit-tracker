@@ -64,7 +64,7 @@ class Calendar extends Component {
         return (
             <div className="header row flex-middle">
                 <div className="column col-start">
-                    <div className="icon" onClick={this.prevMonth}>
+                    <div className="icon" onClick={(evt, data)=>this.switchCalendarView(evt, data)}>
                         chevron_left
                     </div>
                 </div>
