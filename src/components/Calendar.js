@@ -42,7 +42,7 @@ class Calendar extends Component {
             <div>
                 <div className="header row flex-middle">
                     <div className="column col-start">
-                        <div className="icon">
+                        <div className="icon" onClick={this.prevMonth}>
                             chevron_left
                         </div>
                     </div>
@@ -50,7 +50,7 @@ class Calendar extends Component {
                         <span>{format(this.state.currentMonth, dateFormat, { locale: itLocale })}</span>
                     </div>
                     <div className="column col-end">
-                        <div className="icon">
+                        <div className="icon" onClick={this.nextMonth}>
                             chevron_right
                         </div>
                     </div>
