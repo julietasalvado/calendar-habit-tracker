@@ -13,8 +13,11 @@ class Calendar extends Component {
         }
     }
 
-    switchCalendarView = (evt, data) => {
-        this.setState({ displayMonthView: !this.state.displayMonthView})
+    switchCalendarView = (evt, data, day) => {
+        this.setState({
+            displayMonthView: !this.state.displayMonthView,
+            startDateSelectedView: day
+        })
     }
 
     nextMonth = () => {
@@ -83,8 +86,9 @@ class Calendar extends Component {
         let endDate = endOfMonth(this.state.currentMonth)
         let formattedDate = "";
         while (day <= endDate) {
+            let startWeekDate = day
             days.push(
-                <div className="col cell"  onClick={(evt, data)=>this.switchCalendarView(evt, data)}>
+                <div className="col cell"  onClick={(evt, data)=>this.switchCalendarView(evt, data, startWeekDate)}>
                 </div>
             )
             for (let i = 1; i < 8; i++) {
@@ -111,10 +115,6 @@ class Calendar extends Component {
         return <div className="body">{rows}</div>;
     }
 
-    renderWeekCells() {
-
-    }
-
     renderDays() {
         const days = [];
         days.push(
@@ -133,6 +133,32 @@ class Calendar extends Component {
             );
         }
         return <div className="days row">{days}</div>;
+    }
+
+    renderWeekDayNumbers() {
+        const days = [];
+        days.push(
+            <div className="col col-center" key={0}>
+
+            </div>
+        );
+        let day = this.state.startDateSelectedView
+        let formattedDate = ""
+        const dateFormat = "d"
+        for (let i = 1; i < 8; i++) {
+            formattedDate = format(day, dateFormat)
+            days.push(
+                <div className="col col-center" key={i}>
+                    <p>{formattedDate}</p>
+                </div>
+            );
+            day = addDays(day, 1)
+        }
+        return <div className="days row">{days}</div>;
+    }
+
+    renderWeekCells() {
+        return this.renderWeekDayNumbers()
     }
 
     render() {
