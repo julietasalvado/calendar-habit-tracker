@@ -158,7 +158,43 @@ class Calendar extends Component {
     }
 
     renderWeekCells() {
-        return this.renderWeekDayNumbers()
+        return (
+            <div>
+                {this.renderWeekDayNumbers()}
+                {this.renderWeekHourCells()}
+            </div>)
+    }
+
+    renderWeekHourCells() {
+        const startHour = 7
+        const endHour = 23
+        const total = (endHour - startHour) * 7
+
+        const rows = []
+        let cells = [];
+        let cell = 0
+        while (cell <= total) {
+            cells.push(
+                <div className="col cell">
+                    <span>{cell/7+startHour + ":00"}</span>
+                </div>
+            )
+            for (let i = 1; i < 8; i++) {
+                cells.push(
+                    <div className="col cell" key={cell}>
+                    </div>
+                )
+                cell += 1
+            }
+            rows.push(
+                <div className="row" key={cell}>
+                    {cells}
+                </div>
+            );
+            cells = [];
+        }
+
+        return <div className="body">{rows}</div>;
     }
 
     render() {
