@@ -1,5 +1,8 @@
 # Calendar Habit Tracker
 
+frontend [http://localhost:3000](http://localhost:3000) 
+backend [http://localhost:8080](http://localhost:8000) 
+
 
 ## Available Scripts
 
