@@ -1,10 +1,10 @@
-package com.calendar.habittracker.controllers;
+package com.calendar.habittracker.services;
 
 import com.calendar.habittracker.model.Topic;
 
 import java.util.List;
 
-public interface ITopicController {
+public interface ITopicService {
   List<Topic> getAllTopics();
   List<Topic> getStartedTopics();
 }
