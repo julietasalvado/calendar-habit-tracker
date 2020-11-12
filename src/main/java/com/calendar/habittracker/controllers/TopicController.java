@@ -19,4 +19,9 @@ public class TopicController implements ITopicController {
   public List<Topic> getAllTopics() {
     return topicService.getAllTopics();
   }
+
+  @GetMapping("/topics/started")
+  public List<Topic> getStartedTopics() {
+    return topicService.getStartedTopics();
+  }
 }
