@@ -1,5 +1,6 @@
 package com.calendar.habittracker.services;
 
+import com.calendar.habittracker.model.AddTopicRequest;
 import com.calendar.habittracker.model.Topic;
 import com.calendar.habittracker.repository.TopicRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +24,13 @@ public class TopicService implements ITopicService {
     return getAllTopics().stream()
             .filter(topic -> topic.getCompleted() != 0)
             .collect(Collectors.toList());
+  }
+
+  @Override
+  public void addTopic(AddTopicRequest request) {
+    Topic topic = Topic.builder()
+            .title(request.getTitle())
+            .build();
+    topicRepository.save(topic);
   }
 }
