@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import { Segment, Label } from 'semantic-ui-react'
+import { Segment, Label, Input } from 'semantic-ui-react'
 import TopicDataService from '../services/TopicDataService'
 import NewTopicLabel from '../components/NewTopicLabel'
 import StartedTopicSection from '../components/StartedTopicSection'
@@ -9,11 +9,32 @@ class TopicSection extends Component {
     constructor(props) {
         super(props);
         this.retrieveAllTopics = this.retrieveAllTopics.bind(this);
+        this.handleNewTopicClick = this.handleNewTopicClick.bind(this);
+        this.handleNewTopicOnChange = this.handleNewTopicOnChange.bind(this);
         this.state = {
             allTopics: [],
-            startedTopics: []
+            startedTopics: [],
+            newTopicValue: ""
         }
     }
+
+    handleNewTopicClick() {
+        TopicDataService.addNewTopic(this.state.newTopicValue)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+        this.setState({ newTopicValue: "" });
+        this.retrieveAllTopics()
+    }
+
+    handleNewTopicOnChange  = e => {
+        console.log(e)
+        this.setState({ newTopicValue: e.value });
+    };
+
 
     retrieveAllTopics() {
         TopicDataService.getAll()
@@ -51,7 +72,20 @@ class TopicSection extends Component {
                     <Label color='red' horizontal>
                         Argomenti nuovi
                     </Label>
-                    {listedTopic}
+
+                    <Input
+                        action={{
+                            icon: "add",
+                            onClick: () => this.handleNewTopicClick()
+                        }}
+                        onChange={(e, data)=>{
+                        this.handleNewTopicOnChange(data)
+                    }}
+                        placeholder='Aggiungere...'
+                    />
+                    <Segment basic>
+                        {listedTopic}
+                    </Segment>
                 </Segment>
                 <Segment>
                     <Label color='teal' horizontal>

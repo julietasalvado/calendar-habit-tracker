@@ -8,6 +8,14 @@ class TopicDataService {
     getStarted() {
         return http.get("/topics/started")
     }
+
+    addNewTopic(title) {
+        return http.post("/topics", { title })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
+    }
 }
 
 export default new TopicDataService()
