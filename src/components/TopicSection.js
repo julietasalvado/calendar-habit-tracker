@@ -64,7 +64,7 @@ class TopicSection extends Component {
         this.retrieveAllTopics()
         const listedTopic = this.state.allTopics.map((topic) => <NewTopicLabel title = {topic.title}/> );
         this.retrieveStartedTopics()
-        const listedStartedTopics = this.state.startedTopics.map((topic) => <StartedTopicSection title = {topic.title}/> );
+        const listedStartedTopics = this.state.startedTopics.map((topic) => <StartedTopicSection title = {topic.title} resources = {topic.resources}/> );
 
         return (
             <div>
