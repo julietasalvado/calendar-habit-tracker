@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import { Segment, Label, Input } from 'semantic-ui-react'
+import {Segment, Label, Input, Button} from 'semantic-ui-react'
 import TopicDataService from '../services/TopicDataService'
 import NewTopicLabel from '../components/NewTopicLabel'
 import StartedTopicSection from '../components/StartedTopicSection'
@@ -8,9 +8,10 @@ class TopicSection extends Component {
 
     constructor(props) {
         super(props);
-        this.retrieveAllTopics = this.retrieveAllTopics.bind(this);
-        this.handleNewTopicClick = this.handleNewTopicClick.bind(this);
-        this.handleNewTopicOnChange = this.handleNewTopicOnChange.bind(this);
+        this.retrieveAllTopics = this.retrieveAllTopics.bind(this)
+        this.handleNewTopicClick = this.handleNewTopicClick.bind(this)
+        this.handleNewTopicOnChange = this.handleNewTopicOnChange.bind(this)
+        this.registerHabitIniciation = this.registerHabitIniciation.bind(this)
         this.state = {
             allTopics: [],
             startedTopics: [],
@@ -60,11 +61,31 @@ class TopicSection extends Component {
             });
     }
 
+    registerHabitIniciation(topicTitle) {
+        console.log(topicTitle)
+        TopicDataService.registerHabitExecution(topicTitle)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
   render() {
         this.retrieveAllTopics()
-        const listedTopic = this.state.allTopics.map((topic) => <NewTopicLabel title = {topic.title}/> );
+      const listedTopic = this.state.allTopics.map((topic) =>
+          <Segment basic>
+              <NewTopicLabel title = {topic.title}/>
+              <Button.Group basic size='mini' floated='right'>
+                  <Button icon='play' onClick={() => this.registerHabitIniciation(topic.title)}/>
+                  <Button icon='add' />
+              </Button.Group>
+          </Segment> );
         this.retrieveStartedTopics()
-        const listedStartedTopics = this.state.startedTopics.map((topic) => <StartedTopicSection title = {topic.title} resources = {topic.resources}/> );
+        const listedStartedTopics = this.state.startedTopics.map((topic) => <StartedTopicSection title = {topic.title}
+                                                                                                 resources = {topic.resources}
+                                                                                                 /> );
 
         return (
             <div>
