@@ -16,6 +16,15 @@ class TopicDataService {
                 console.log(res.data);
             })
     }
+
+    registerHabitExecution(topicTitle) {
+        let uri = "/topics/" + topicTitle
+        return http.post(uri)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
+    }
 }
 
 export default new TopicDataService()

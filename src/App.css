@@ -246,3 +246,11 @@ main {
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+li {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  -o-column-count: 2;
+  column-count: 2;
+  list-style-type: none;
+}
