@@ -1,9 +1,10 @@
-import {BrowserRouter as Router} from "react-router-dom";
-import {Grid, Segment, Sidebar, Menu} from "semantic-ui-react";
-import {Route} from "react-router";
-import Calendar from "./Calendar";
-import TopicSection from "./TopicSection";
-import React, {Component} from "react";
+import {BrowserRouter as Router} from "react-router-dom"
+import {Grid, Segment, Sidebar, Menu} from "semantic-ui-react"
+import {Route} from "react-router"
+import Calendar from "./Calendar"
+import TopicSection from "./TopicSection"
+import NewBookSection from "./NewBookSection"
+import React, {Component} from "react"
 
 export default class AppBody extends Component {
     state = { activeItem: 'home' }
@@ -25,6 +26,9 @@ export default class AppBody extends Component {
         const books =
             <Segment basic>
                 <Grid columns={2} relaxed='very'>
+                    <Grid.Column>
+                        <NewBookSection/>
+                    </Grid.Column>
                 </Grid>
             </Segment>
         const { activeItem } = this.state
