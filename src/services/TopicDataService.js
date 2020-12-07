@@ -33,6 +33,10 @@ class TopicDataService {
                 console.log(res.data);
             })
     }
+
+    getBooks() {
+        return http.get("/books");
+    }
 }
 
 export default new TopicDataService()
