@@ -16,10 +16,11 @@ class NewBookSection extends Component {
             .catch(e => {
                 console.log(e);
             });
+        this.setState({ title: '', sectionNumber: '' })
     }
 
     render() {
-        const { title, sectionNumber, submittedTitle, submittedSectionNumber } = this.state
+        const { title, sectionNumber} = this.state
         return (
             <Segment secondary>
                 <Form onSubmit={this.handleSubmit}>
