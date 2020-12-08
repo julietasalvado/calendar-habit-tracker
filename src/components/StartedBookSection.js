@@ -12,7 +12,7 @@ class StartedBookSection extends Component {
     getSection() {
         return (
             <Segment raised>
-                <Label as='a' color='red' ribbon>
+                <Label as='a' color={this.props.color} ribbon>
                     {this.props.title}
                 </Label>
                 <Segment>

@@ -19,6 +19,7 @@ public class BookService implements IBookService {
         Book book = Book.builder()
                 .title(request.getTitle())
                 .numParts(request.getNumParts())
+                .color(request.getColor())
                 .build();
         bookRepository.save(book);
     }

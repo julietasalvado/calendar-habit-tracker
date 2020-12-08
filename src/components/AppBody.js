@@ -39,8 +39,9 @@ export default class AppBody extends Component {
             </Segment>
         const bookList = this.state.startedBooks;
         const startedBooksList = bookList.map((book) => <StartedBookSection title={book.title}
-                                                                             numParts={book.numParts}
-                                                                             completed={book.completed}
+                                                                            numParts={book.numParts}
+                                                                            completed={book.completed}
+                                                                            color={book.color}
         /> )
         const books =
             <Segment basic>
