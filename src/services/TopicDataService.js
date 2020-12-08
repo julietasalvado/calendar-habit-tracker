@@ -17,6 +17,14 @@ class TopicDataService {
             })
     }
 
+    addNewBook(title, numParts) {
+        return http.post("/books", { title, numParts })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
+    }
+
     registerHabitExecution(topicTitle) {
         let uri = "/topics/" + topicTitle
         return http.post(uri)
