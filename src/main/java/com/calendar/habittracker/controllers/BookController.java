@@ -1,13 +1,13 @@
 package com.calendar.habittracker.controllers;
 
 import com.calendar.habittracker.model.AddBookRequest;
+import com.calendar.habittracker.model.Book;
 import com.calendar.habittracker.services.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -20,5 +20,11 @@ public class BookController implements IBookController {
     @ResponseBody
     public void addBook(@RequestBody AddBookRequest request) {
         bookService.addBook(request);
+    }
+
+    @GetMapping(value = "/books", produces = APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
     }
 }
