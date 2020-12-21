@@ -20,4 +20,5 @@ public class Book {
     private String title;
     private int numParts;
     private ArrayList completedParts;
+    private String color;
 }
