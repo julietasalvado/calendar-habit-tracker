@@ -8,4 +8,5 @@ import lombok.*;
 @Builder
 public class AddBookRequest extends AddTopicRequest {
     private int numParts;
+    private String color;
 }
