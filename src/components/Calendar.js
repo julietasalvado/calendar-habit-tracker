@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {startOfWeek, startOfMonth, endOfMonth, format, addDays, isSameDay, isSameMonth, subMonths, addMonths} from "date-fns";
 import itLocale from "date-fns/locale/it";
+import {Grid} from "semantic-ui-react";
 
 class Calendar extends Component {
     constructor() {
@@ -79,6 +80,25 @@ class Calendar extends Component {
     }
 
     renderCells() {
+        const colors = [
+            'color1',
+            'color2',
+            '',
+            'color3',
+            'color4',
+            '',
+        ]
+
+        const GridExampleColoredColumn = () => (
+            <Grid columns={3} centered='horizontally'>
+                {colors.map((color) => (
+                    <Grid.Column>
+                        <div className={`box ${color}`}/>
+                    </Grid.Column>
+                ))}
+            </Grid>
+        )
+        
         const rows = []
         const dateFormat = "d"
         let days = [];
@@ -100,6 +120,7 @@ class Calendar extends Component {
                     >
                         <span className="number">{formattedDate}</span>
                         <span className="bg">{formattedDate}</span>
+                        <GridExampleColoredColumn/>
                     </div>
                 )
                 day = addDays(day, 1)
