@@ -254,3 +254,26 @@ li {
   column-count: 2;
   list-style-type: none;
 }
+
+.box {
+    /*float: left;*/
+    height: 20px;
+    width: 20px;
+    /*clear: both;*/
+}
+
+.color1 {
+    background-color: deeppink;
+}
+
+.color2 {
+    background-color: #53cbf1;
+}
+
+.color3 {
+    background-color: wheat;
+}
+
+.color4 {
+    background-color: coral;
+}
