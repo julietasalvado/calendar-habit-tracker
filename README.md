@@ -3,6 +3,7 @@
 frontend [http://localhost:3000](http://localhost:3000) 
 
 backend [http://localhost:8080](http://localhost:8000) 
+swagger page [http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config)
 
 
 ## Available Scripts
