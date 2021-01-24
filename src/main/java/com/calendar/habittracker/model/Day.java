@@ -8,7 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Month;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Data
@@ -25,6 +27,19 @@ public class Day {
 
   public static DayBuilder builder() {
     return new DayBuilder();
+  }
+
+  public void addHabitExecuted(String colorId, String colorTitle) {
+    Optional<DayHabit> sameColorHabitOpt = habitsExecuted.stream().findAny().filter(dayHabit -> dayHabit.getColorId().equals(colorId));
+    if (!sameColorHabitOpt.isPresent()) {
+      habitsExecuted.add(DayHabit.builder()
+              .colorId(colorId)
+              .colorTitle(new HashSet<>(Collections.singletonList(colorTitle)))
+              .intensity(1)
+              .build());
+    } else {
+      sameColorHabitOpt.get().increaseIntensity(colorTitle);
+    }
   }
 
   public static class DayBuilder {

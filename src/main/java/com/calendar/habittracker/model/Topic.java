@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +18,8 @@ public class Topic {
   private String title;
   private int level = 1;
   private int completed = 0;
-  private ArrayList resources;
+  private List resources;
+  private String colorId;
 
   public static Builder builder() {
     return new Builder();
@@ -33,7 +34,8 @@ public class Topic {
     private String title;
     private int level;
     private int completed;
-    private ArrayList resources;
+    private List resources;
+    private String colorId;
 
     Builder() {
       this.level = 1;
@@ -59,13 +61,18 @@ public class Topic {
       return this;
     }
 
-    public Builder resources(ArrayList resources) {
+    public Builder resources(List resources) {
       this.resources = resources;
       return this;
     }
 
+    public Builder colorId(String colorId) {
+      this.colorId = colorId;
+      return this;
+    }
+
     public Topic build() {
-      return new Topic(id, title, level, completed, resources);
+      return new Topic(id, title, level, completed, resources, colorId);
     }
 
     public String toString() {
