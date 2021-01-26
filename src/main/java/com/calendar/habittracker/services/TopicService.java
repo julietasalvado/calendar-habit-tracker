@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,5 +33,10 @@ public class TopicService implements ITopicService {
             .title(request.getTitle())
             .build();
     topicRepository.save(topic);
+  }
+
+  @Override
+  public Optional<Topic> getTopic(String topicId) {
+    return topicRepository.findById(topicId);
   }
 }
