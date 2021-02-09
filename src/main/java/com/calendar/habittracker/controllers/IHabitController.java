@@ -10,8 +10,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.time.Month;
 
 public interface IHabitController {
 
@@ -45,4 +48,8 @@ public interface IHabitController {
   @PostMapping(path = "/habits/{id}", produces = "application/json")
   ResponseEntity logHabit(@Parameter(description = "id of the habit to be logged")
                           @PathVariable String id);
+
+  @Operation(summary = "Gets the habits executed in a specific month")
+  @GetMapping(path = "/habits", produces = "application/json")
+  ResponseEntity getMonth(int year, Month month);
 }

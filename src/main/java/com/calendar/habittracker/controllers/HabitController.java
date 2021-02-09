@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Month;
+
 @RestController
 @Tag(name = "Habits")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -18,5 +20,11 @@ public class HabitController implements IHabitController {
   public ResponseEntity logHabit(String id) {
     return ResponseEntity.status(HttpStatus.OK)
             .body(habitService.logHabit(id));
+  }
+
+  @Override
+  public ResponseEntity getMonth(int year, Month month) {
+    return ResponseEntity.status(HttpStatus.OK)
+            .body(habitService.getMonth(year, month));
   }
 }
